@@ -2,29 +2,29 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-sealed class UtilisateurEvent extends Equatable {
+sealed class UserEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
 
-final class UtilisateurAuthentifierEvent extends UtilisateurEvent {
+final class AuthentificateUserEvent extends UserEvent {
   final String email;
-  final String motDePasse;
+  final String password;
 
-  UtilisateurAuthentifierEvent({this.email = "", this.motDePasse = ""});
+  AuthentificateUserEvent({this.email = "", this.password = ""});
 
   @override
-  List<Object> get props => [email, motDePasse];
+  List<Object> get props => [email, password];
 }
 
-final class UtilisateurEnregistrerEvent extends UtilisateurEvent {
+final class RegisterUserEvent extends UserEvent {
   final String email;
-  final String motDePasse;
-  final String confirmerMotDePasse;
+  final String password;
+  final String confirmPassword;
 
-  UtilisateurEnregistrerEvent(
-      {this.email = "", this.motDePasse = "", this.confirmerMotDePasse = ""});
+  RegisterUserEvent(
+      {this.email = "", this.password = "", this.confirmPassword = ""});
 
   @override
-  List<Object> get props => [email, motDePasse, confirmerMotDePasse];
+  List<Object> get props => [email, password, confirmPassword];
 }

@@ -8,12 +8,12 @@ final sl = GetIt.instance;
 class Store {
   Store();
 
-  void addIdUtilisateur(int idUtilisateur) {
-    localStorage.setItem('id_utilisateur', idUtilisateur.toString());
+  void addUserId(int userId) {
+    localStorage.setItem('user_id', userId.toString());
   }
 
-  int getIdUtilisateur() {
-    return int.parse(localStorage.getItem('id_utilisateur') ?? '0');
+  int getUserId() {
+    return int.parse(localStorage.getItem('user_id') ?? '0');
   }
 }
 

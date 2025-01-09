@@ -1,6 +1,6 @@
 import 'package:buniashop/core/exceptions/exceptions.dart';
 import 'package:buniashop/core/result/result.dart';
-import 'package:buniashop/features/user/data/datasources/utilisateur_datasource.dart';
+import 'package:buniashop/features/user/data/datasources/user_datasource.dart';
 import 'package:buniashop/features/user/data/model/user_model.dart';
 import 'package:supabase/supabase.dart';
 

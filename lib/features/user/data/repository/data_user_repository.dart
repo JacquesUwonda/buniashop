@@ -1,6 +1,6 @@
 import 'package:buniashop/core/exceptions/exceptions.dart';
 import 'package:buniashop/core/result/result.dart';
-import 'package:buniashop/features/user/data/datasources/utilisateur_datasource.dart';
+import 'package:buniashop/features/user/data/datasources/user_datasource.dart';
 import 'package:buniashop/features/user/domain/repository/user_repository.dart';
 
 class DataUserRepository extends UserRepository {

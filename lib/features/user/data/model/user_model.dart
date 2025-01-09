@@ -1,4 +1,4 @@
-import 'package:buniashop/features/user/domain/entities/utilisateur.dart';
+import 'package:buniashop/features/user/domain/entities/user.dart';
 
 class UserModel extends User {
   const UserModel({super.userId, super.email, super.authId});
