@@ -17,75 +17,74 @@ void main() {
   late MockAuthentificateUser mockAuthentificateUser;
   late MockRegisterUser mockRegisterUser;
 
-  late AuthentificateUserBloc utilisateurAuthentifierBloc;
-  late RegisterUserBloc utilisateurEnregistrerBloc;
+  late AuthentificateUserBloc authentificateUserBloc;
+  late RegisterUserBloc registerUserBloc;
 
   setUp(() {
     mockAuthentificateUser = MockAuthentificateUser();
     mockRegisterUser = MockRegisterUser();
 
-    utilisateurAuthentifierBloc =
+    authentificateUserBloc =
         AuthentificateUserBloc(authentificateUser: mockAuthentificateUser);
-    utilisateurEnregistrerBloc =
-        RegisterUserBloc(registerUser: mockRegisterUser);
+    registerUserBloc = RegisterUserBloc(registerUser: mockRegisterUser);
   });
 
-  group('test [UtilisateurAuthentifierBloc]', () {
-    blocTest('devrait emettre [UtilisateurLoading,UtilisateurSucces]',
+  group('test [AuthentificateUserBloc]', () {
+    blocTest('emitting [UserLoadingState,UserSuccess]',
         build: () {
           when(() => mockAuthentificateUser("test@gmail.com", "aaaa"))
               .thenAnswer((_) async => Succes<User>(value: User()));
-          return utilisateurAuthentifierBloc;
+          return authentificateUserBloc;
         },
-        act: (bloc) => utilisateurAuthentifierBloc.add(
+        act: (bloc) => authentificateUserBloc.add(
             AuthentificateUserEvent(email: "test@gmail.com", password: "aaaa")),
         expect: () => [UserLoadingState(), UserSuccess(result: User())]);
 
-    blocTest('devrait emettre [UtilisateurLoading,UtilisateurEchec]',
+    blocTest('emitting [UserLoadingState,UserEchecState]',
         build: () {
           when(() => mockAuthentificateUser("test@gmail.com", "aaaa"))
               .thenAnswer((_) async => Echec(reason: "erreur serveur"));
-          return utilisateurAuthentifierBloc;
+          return authentificateUserBloc;
         },
-        act: (bloc) => utilisateurAuthentifierBloc.add(
+        act: (bloc) => authentificateUserBloc.add(
             AuthentificateUserEvent(email: "test@gmail.com", password: "aaaa")),
         expect: () =>
             [UserLoadingState(), UserEchecState(raison: "erreur serveur")]);
   });
 
-  group('test [UtilisateurEnregistrerBloc]', () {
-    blocTest('devrait emettre [UtilisateurLoading,UtilisateurSucces]',
+  group('test [RegisateurEnregistrerBloc]', () {
+    blocTest('emitting [UserLoadingState,UserSuccess]',
         build: () {
           when(() => mockRegisterUser("test@gmail.com", "aaaa"))
               .thenAnswer((_) async => Succes<User>(value: User()));
-          return utilisateurEnregistrerBloc;
+          return registerUserBloc;
         },
-        act: (bloc) => utilisateurEnregistrerBloc.add(RegisterUserEvent(
+        act: (bloc) => registerUserBloc.add(RegisterUserEvent(
             email: "test@gmail.com",
             password: "aaaa",
             confirmPassword: "aaaa")),
         expect: () => [UserLoadingState(), UserSuccess(result: User())]);
 
-    blocTest('devrait emettre [UtilisateurLoading,UtilisateurEchec]',
+    blocTest('emitting [UserLoadingState,UserEchecState]',
         build: () {
           when(() => mockRegisterUser("test@gmail.com", "aaaa"))
               .thenAnswer((_) async => Echec(reason: "server error"));
-          return utilisateurEnregistrerBloc;
+          return registerUserBloc;
         },
-        act: (bloc) => utilisateurEnregistrerBloc.add(RegisterUserEvent(
+        act: (bloc) => registerUserBloc.add(RegisterUserEvent(
             email: "test@gmail.com",
             password: "aaaa",
             confirmPassword: "aaaa")),
         expect: () =>
             [UserLoadingState(), UserEchecState(raison: "server error")]);
 
-    blocTest('devrait emettre [UtilisateurLoading,UtilisateurEchec]',
+    blocTest('emitting [UserLoadingState,UserEchecState]',
         build: () {
           when(() => mockRegisterUser("test@gmail.com", "aaaa"))
               .thenAnswer((_) async => Echec(reason: "server error"));
-          return utilisateurEnregistrerBloc;
+          return registerUserBloc;
         },
-        act: (bloc) => utilisateurEnregistrerBloc
+        act: (bloc) => registerUserBloc
             .add(RegisterUserEvent(email: "test@gmail.com", password: "")),
         expect: () => [
               UserLoadingState(),
@@ -93,13 +92,13 @@ void main() {
                   raison: "erreur: le mot de passe ne doit pas être vide.")
             ]);
 
-    blocTest('devrait emettre [UtilisateurLoading,UtilisateurEchec]',
+    blocTest('emitting [UserLoadingState,UserEchecState]',
         build: () {
           when(() => mockRegisterUser("test@gmail.com", "aaaa"))
               .thenAnswer((_) async => Echec(reason: "server error"));
-          return utilisateurEnregistrerBloc;
+          return registerUserBloc;
         },
-        act: (bloc) => utilisateurEnregistrerBloc.add(RegisterUserEvent(
+        act: (bloc) => registerUserBloc.add(RegisterUserEvent(
             email: "test@gmail.com",
             password: "aaaa",
             confirmPassword: "bbbb")),
