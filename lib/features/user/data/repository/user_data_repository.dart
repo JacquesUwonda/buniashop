@@ -3,9 +3,9 @@ import 'package:buniashop/core/result/result.dart';
 import 'package:buniashop/features/user/data/datasources/user_datasource.dart';
 import 'package:buniashop/features/user/domain/repository/user_repository.dart';
 
-class DataUserRepository extends UserRepository {
+class UserDataRepository extends UserRepository {
   UserDatasource datasource;
-  DataUserRepository({required this.datasource});
+  UserDataRepository({required this.datasource});
 
   @override
   FutureResultat authentificateUser(String email, String password) async {
