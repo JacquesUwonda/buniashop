@@ -7,9 +7,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initLocalStorage();
   Supabase.initialize(
-      url: "https://gzcntgkfbhmzphhfzmka.supabase.co",
+      url: "https://lpoeyhudliavfeewxion.supabase.co",
       anonKey:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd6Y250Z2tmYmhtenBoaGZ6bWthIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzUzOTc2MTgsImV4cCI6MjA1MDk3MzYxOH0.AB3gisCuv1Vg5GNi1OyDIub5CBoJOfrGevPbN-j0l-4");
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxwb2V5aHVkbGlhdmZlZXd4aW9uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzY1MjQ4NTMsImV4cCI6MjA1MjEwMDg1M30.iGoa0DMMEIkynMELNxqS9L6ZdUvNGEq1Hky6dbSmubU");
   di.init();
 
   runApp(MaterialApp(
