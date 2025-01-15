@@ -1,5 +1,6 @@
 import 'package:buniashop/utils/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class RoundedElevatedButton extends StatelessWidget {
   const RoundedElevatedButton({
@@ -23,7 +24,7 @@ class RoundedElevatedButton extends StatelessWidget {
         shape: const WidgetStatePropertyAll(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
-              Radius.circular(10),
+              Radius.circular(20),
             ),
           ),
         ),
@@ -33,10 +34,10 @@ class RoundedElevatedButton extends StatelessWidget {
       ),
       child: Text(
         buttonText,
-        style: const TextStyle(
-          color: bottonTextColor,
+        style: GoogleFonts.inter(
+          color: colorWhite,
           fontWeight: FontWeight.w400,
-          fontSize: 16,
+          fontSize: 20,
         ),
       ),
     );

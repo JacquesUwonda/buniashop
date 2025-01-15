@@ -1,6 +1,4 @@
-import 'package:buniashop/features/user/presentation/authentification/logic/cubit/showpassword_cubit.dart';
 import 'package:buniashop/features/user/presentation/authentification/widgets/custom_text_field.dart';
-import 'package:buniashop/features/user/presentation/authentification/widgets/rounded_elevated_button.dart';
 import 'package:buniashop/utils/app_colors.dart';
 import 'package:buniashop/utils/app_element_names.dart';
 import 'package:buniashop/utils/validation_rules.dart';
@@ -8,17 +6,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
+import '../logic/cubit/showpassword_cubit.dart';
+import '../widgets/rounded_elevated_button.dart';
 
-  final _loginFormKey = GlobalKey<FormState>();
+class RegisterPage extends StatelessWidget {
+  RegisterPage({super.key});
+
+  final _registerFormKey = GlobalKey<FormState>();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   void dispose() {
+    _confirmPasswordController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
   }
+  /////////////////////////////////
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +47,7 @@ class LoginPage extends StatelessWidget {
                   height: 50,
                 ),
                 Form(
-                  key: _loginFormKey,
+                  key: _registerFormKey,
                   child: Column(
                     spacing: 15,
                     children: [
@@ -98,21 +103,53 @@ class LoginPage extends StatelessWidget {
                           );
                         },
                       ),
+                      BlocBuilder<ShowpasswordCubit, ShowpasswordState>(
+                        builder: (context, state) {
+                          return CustomTextFormField(
+                            controller: _confirmPasswordController,
+                            validator: (val) {
+                              if (val!.isEmpty) {
+                                return requiredText;
+                              }
+                              return null;
+                            },
+                            keyboardType: TextInputType.visiblePassword,
+                            obscureText: state.isPasswordVisible,
+                            prefix: const Icon(
+                              Icons.lock,
+                              color: bottonColor,
+                            ),
+                            suffix: InkWell(
+                              onTap: () {
+                                context.read<ShowpasswordCubit>().showPassword(
+                                    showPassword: !state.isPasswordVisible);
+                              },
+                              child: Icon(
+                                state.isPasswordVisible
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                                color: bottonColor,
+                              ),
+                            ),
+                            hintText: confirmPasswordText,
+                          );
+                        },
+                      ),
                       const SizedBox(
                         height: 5,
                       ),
                       RoundedElevatedButton(
-                        buttonText: loginText,
+                        buttonText: registerText,
                         onPressed: () {
-                          if (_loginFormKey.currentState!.validate()) {}
+                          if (_registerFormKey.currentState!.validate()) {}
                         },
                       ),
                       const SizedBox(
                         height: 2,
                       ),
-                      Text(newUser),
+                      Text(oldUser),
                       RoundedElevatedButton(
-                        buttonText: registerText,
+                        buttonText: loginText,
                         onPressed: () {},
                       ),
                     ],

@@ -1,8 +1,11 @@
 const sourie = "souris";
-const requiredText = "Veillez remplir ce champ";
-const provideValidEmail = "Veillez entrer un email valide";
+const appName = "BuniaShop";
+const requiredText = "Please fill this field";
+const provideValidEmail = "Please provide a valid email";
 const emailText = "email";
 const passwordText = "password";
-const newUser = "Pas encoure de compte?";
+const confirmPasswordText = "confirm password";
+const newUser = "Don't have an account?";
+const oldUser = "Already have an account?";
 const loginText = "Login";
-const signUpText = "Sign Up";
+const registerText = "Sign Up";
