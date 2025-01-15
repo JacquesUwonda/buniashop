@@ -1,3 +1,4 @@
+import 'package:buniashop/core/routes/routes_names.dart';
 import 'package:buniashop/dependency_injection.dart';
 import 'package:buniashop/features/user/domain/entities/user.dart';
 import 'package:buniashop/features/user/presentation/authentification/logic/bloc/authentification_bloc.dart';
@@ -11,6 +12,7 @@ import 'package:buniashop/utils/validation_rules.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../logic/cubit/showpassword_cubit.dart';
@@ -45,7 +47,7 @@ class RegisterPage extends StatelessWidget {
             var store = sl<Store>();
             var user = state.result as User;
             sl<Store>().addUserId(user.userId);
-            Navigator.of(context).popAndPushNamed("/profil");
+            context.pushNamed(RouteNames.login);
           }
         },
         child: BlocBuilder<RegisterUserBloc, UserState>(
@@ -211,7 +213,9 @@ class RegisterPage extends StatelessWidget {
                     Text(oldUser),
                     RoundedElevatedButton(
                       buttonText: loginText,
-                      onPressed: () {},
+                      onPressed: () {
+                        context.pushNamed(RouteNames.login);
+                      },
                     ),
                   ],
                 ),
