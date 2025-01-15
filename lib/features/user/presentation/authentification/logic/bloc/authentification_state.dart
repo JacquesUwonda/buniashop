@@ -20,9 +20,9 @@ final class UserSuccess<T extends Object> extends UserState {
 }
 
 final class UserEchecState extends UserState {
-  final String raison;
-  UserEchecState({required this.raison});
+  final String reason;
+  UserEchecState({required this.reason});
 
   @override
-  List<Object> get props => [raison];
+  List<Object> get props => [reason];
 }

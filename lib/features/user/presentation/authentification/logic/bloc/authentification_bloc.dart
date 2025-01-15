@@ -19,7 +19,7 @@ class AuthentificateUserBloc extends Bloc<UserEvent, UserState> {
         if (result is Succes) {
           emit(UserSuccess<User>(result: result.value));
         } else if (result is Echec) {
-          emit(UserEchecState(raison: result.reason));
+          emit(UserEchecState(reason: result.reason));
         }
       }
     });
@@ -38,16 +38,16 @@ class RegisterUserBloc extends Bloc<UserEvent, UserState> {
 
         if (motDePasse.isEmpty) {
           emit(UserEchecState(
-              raison: "erreur: le mot de passe ne doit pas être vide."));
+              reason: "erreur: le mot de passe ne doit pas être vide."));
         } else if (motDePasse != confirmerMotDePasse) {
           emit(UserEchecState(
-              raison: "erreur: les mots de passe ne concordent pas."));
+              reason: "erreur: les mots de passe ne concordent pas."));
         } else {
           final resultat = await registerUser(email, motDePasse);
           if (resultat is Succes) {
             emit(UserSuccess<User>(result: resultat.value));
           } else if (resultat is Echec) {
-            emit(UserEchecState(raison: resultat.reason));
+            emit(UserEchecState(reason: resultat.reason));
           }
         }
       }

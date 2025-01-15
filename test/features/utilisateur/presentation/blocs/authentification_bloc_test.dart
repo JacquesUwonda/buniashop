@@ -49,7 +49,7 @@ void main() {
         act: (bloc) => authentificateUserBloc.add(
             AuthentificateUserEvent(email: "test@gmail.com", password: "aaaa")),
         expect: () =>
-            [UserLoadingState(), UserEchecState(raison: "erreur serveur")]);
+            [UserLoadingState(), UserEchecState(reason: "erreur serveur")]);
   });
 
   group('test [RegisateurEnregistrerBloc]', () {
@@ -76,7 +76,7 @@ void main() {
             password: "aaaa",
             confirmPassword: "aaaa")),
         expect: () =>
-            [UserLoadingState(), UserEchecState(raison: "server error")]);
+            [UserLoadingState(), UserEchecState(reason: "server error")]);
 
     blocTest('emitting [UserLoadingState,UserEchecState]',
         build: () {
@@ -89,7 +89,7 @@ void main() {
         expect: () => [
               UserLoadingState(),
               UserEchecState(
-                  raison: "erreur: le mot de passe ne doit pas être vide.")
+                  reason: "erreur: le mot de passe ne doit pas être vide.")
             ]);
 
     blocTest('emitting [UserLoadingState,UserEchecState]',
@@ -105,7 +105,7 @@ void main() {
         expect: () => [
               UserLoadingState(),
               UserEchecState(
-                  raison: "erreur: les mots de passe ne concordent pas.")
+                  reason: "erreur: les mots de passe ne concordent pas.")
             ]);
   });
 }

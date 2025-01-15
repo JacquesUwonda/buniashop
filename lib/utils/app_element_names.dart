@@ -1,5 +1,8 @@
 const sourie = "souris";
 const appName = "BuniaShop";
+const dismiss = "Dismiss";
+const ok = "Ok";
+const loadingText = "Loading process...";
 const requiredText = "Please fill this field";
 const provideValidEmail = "Please provide a valid email";
 const emailText = "email";
