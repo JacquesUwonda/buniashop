@@ -1,6 +1,4 @@
 import 'package:buniashop/core/routes/routes_names.dart';
-import 'package:buniashop/dependency_injection.dart';
-import 'package:buniashop/features/user/domain/entities/user.dart';
 import 'package:buniashop/features/user/presentation/authentification/logic/bloc/authentification_bloc.dart';
 import 'package:buniashop/features/user/presentation/authentification/logic/bloc/authentification_event.dart';
 import 'package:buniashop/features/user/presentation/authentification/logic/bloc/authentification_state.dart';
@@ -10,13 +8,11 @@ import 'package:buniashop/features/user/presentation/authentification/widgets/ro
 import 'package:buniashop/utils/alerts_and_loader.dart';
 import 'package:buniashop/utils/app_colors.dart';
 import 'package:buniashop/utils/app_element_names.dart';
-import 'package:buniashop/utils/validation_rules.dart';
+import 'package:buniashop/core/services/validation_rules.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -37,12 +33,10 @@ class LoginPage extends StatelessWidget {
       backgroundColor: colorWhite,
       body: BlocListener<AuthentificateUserBloc, UserState>(
         listener: (context, state) {
-          if (state is UserEchecState) {
+          if (state is UserSuccess) {
+            Navigator.pushNamed(context, RouteNames.homePage);
+          } else if (state is UserEchecState) {
             showSnackBar(context, state.reason, errorColor, dismiss);
-          } else if (state is UserSuccess) {
-            var user = state.result as User;
-            var store = sl<Store>().addUserId(user.userId);
-            context.pushNamed(RouteNames.login);
           }
         },
         child: BlocBuilder<AuthentificateUserBloc, UserState>(
@@ -175,7 +169,7 @@ class LoginPage extends StatelessWidget {
                     RoundedElevatedButton(
                       buttonText: registerText,
                       onPressed: () {
-                        context.pushNamed(RouteNames.register);
+                        Navigator.pushNamed(context, RouteNames.register);
                       },
                     ),
                   ],

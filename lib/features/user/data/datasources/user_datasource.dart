@@ -1,6 +1,7 @@
-import 'package:buniashop/core/result/result.dart';
+import 'package:buniashop/features/user/data/model/user_model.dart';
 
 abstract class UserDatasource {
-  FutureResultat authentificateUser(String email, String password);
-  FutureResultat registerUser(String email, String password);
+  Future<UserModel> login(String email, String password);
+  Future<UserModel> register(String email, String password);
+  Future<void> logout();
 }

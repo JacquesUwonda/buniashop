@@ -1,6 +1,7 @@
-import 'package:buniashop/core/result/result.dart';
+import 'package:buniashop/features/user/domain/entities/user.dart';
 
 abstract class UserRepository {
-  FutureResultat authentificateUser(String email, String password);
-  FutureResultat registerUser(String email, String password);
+  Future<User> login(String email, String password);
+  Future<User> register(String email, String password);
+  Future<void> logout();
 }

@@ -1,6 +1,4 @@
 import 'package:buniashop/core/routes/routes_names.dart';
-import 'package:buniashop/dependency_injection.dart';
-import 'package:buniashop/features/user/domain/entities/user.dart';
 import 'package:buniashop/features/user/presentation/authentification/logic/bloc/authentification_bloc.dart';
 import 'package:buniashop/features/user/presentation/authentification/logic/bloc/authentification_event.dart';
 import 'package:buniashop/features/user/presentation/authentification/logic/bloc/authentification_state.dart';
@@ -8,11 +6,10 @@ import 'package:buniashop/features/user/presentation/authentification/widgets/cu
 import 'package:buniashop/utils/alerts_and_loader.dart';
 import 'package:buniashop/utils/app_colors.dart';
 import 'package:buniashop/utils/app_element_names.dart';
-import 'package:buniashop/utils/validation_rules.dart';
+import 'package:buniashop/core/services/validation_rules.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../logic/cubit/showpassword_cubit.dart';
@@ -41,13 +38,11 @@ class RegisterPage extends StatelessWidget {
       backgroundColor: colorWhite,
       body: BlocListener<RegisterUserBloc, UserState>(
         listener: (context, state) {
-          if (state is UserEchecState) {
+          if (state is UserSuccess) {
+            Navigator.pushNamed(context, RouteNames.login);
+            showSnackBar(context, registerSuccessText, successColor, ok);
+          } else if (state is UserEchecState) {
             showSnackBar(context, state.reason, errorColor, dismiss);
-          } else if (state is UserSuccess) {
-            var store = sl<Store>();
-            var user = state.result as User;
-            sl<Store>().addUserId(user.userId);
-            context.pushNamed(RouteNames.login);
           }
         },
         child: BlocBuilder<RegisterUserBloc, UserState>(
@@ -214,7 +209,7 @@ class RegisterPage extends StatelessWidget {
                     RoundedElevatedButton(
                       buttonText: loginText,
                       onPressed: () {
-                        context.pushNamed(RouteNames.login);
+                        Navigator.pushNamed(context, RouteNames.login);
                       },
                     ),
                   ],

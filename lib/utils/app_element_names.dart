@@ -11,4 +11,6 @@ const confirmPasswordText = "confirm password";
 const newUser = "Don't have an account?";
 const oldUser = "Already have an account?";
 const loginText = "Login";
+const registerSuccessText =
+    "Your account has been created successfully. Login now";
 const registerText = "Sign Up";

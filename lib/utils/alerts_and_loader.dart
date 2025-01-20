@@ -22,6 +22,6 @@ void showSnackBar(BuildContext context, String message, Color? backgroundColor,
 class Loadings {
   static final loadingAnimationWidget = LoadingAnimationWidget.fourRotatingDots(
     color: productBottonColor,
-    size: 20,
+    size: 30,
   );
 }

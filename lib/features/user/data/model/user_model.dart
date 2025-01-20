@@ -1,20 +1,19 @@
 import 'package:buniashop/features/user/domain/entities/user.dart';
 
-class UserModel extends User {
-  const UserModel({super.userId, super.email, super.authId});
+class UserModel {
+  final String id;
+  final String email;
 
-  Map<dynamic, dynamic> toJSON() {
-    return {
-      "userId": userId,
-      "email": email,
-      "auth_id": authId,
-    };
+  UserModel({required this.id, required this.email});
+
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
+      id: json['id'],
+      email: json['email'],
+    );
   }
 
-  factory UserModel.fromJSON(Map<dynamic, dynamic> json) {
-    var userId = json["userId"];
-    var email = json["email"];
-    var authId = json["auth_id"];
-    return UserModel(userId: userId, email: email, authId: authId);
+  User toEntity() {
+    return User(id: id, email: email);
   }
 }

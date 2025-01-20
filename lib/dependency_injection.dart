@@ -1,24 +1,18 @@
+import 'package:buniashop/features/user/dependency_injection.dart';
 import 'package:get_it/get_it.dart';
-import 'package:localstorage/localstorage.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:buniashop/features/user/dependency_injection.dart' as user_di;
 
 final sl = GetIt.instance;
 
-class Store {
-  Store();
+Future<void> initDependencies() async {
+  // Initialisation de Supabase
+  await Supabase.initialize(
+      url: "https://lpoeyhudliavfeewxion.supabase.co",
+      anonKey:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxwb2V5aHVkbGlhdmZlZXd4aW9uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzY1MjQ4NTMsImV4cCI6MjA1MjEwMDg1M30.iGoa0DMMEIkynMELNxqS9L6ZdUvNGEq1Hky6dbSmubU");
+  // Global Dependencies
+  sl.registerLazySingleton<SupabaseClient>(() => Supabase.instance.client);
 
-  void addUserId(int userId) {
-    localStorage.setItem('user_id', userId.toString());
-  }
-
-  int getUserId() {
-    return int.parse(localStorage.getItem('user_id') ?? '0');
-  }
-}
-
-void init() {
-  user_di.init(sl);
-  sl.registerCachedFactory<Store>(() => Store());
-  sl.registerFactory<SupabaseClient>(() => Supabase.instance.client);
+  // User Module Dependencies
+  initUserDependencies(sl);
 }

@@ -1,27 +1,26 @@
-import 'package:buniashop/core/exceptions/exceptions.dart';
-import 'package:buniashop/core/result/result.dart';
 import 'package:buniashop/features/user/data/datasources/user_datasource.dart';
+import 'package:buniashop/features/user/domain/entities/user.dart';
 import 'package:buniashop/features/user/domain/repository/user_repository.dart';
 
-class UserDataRepository extends UserRepository {
-  UserDatasource datasource;
-  UserDataRepository({required this.datasource});
+class UserDataRepository implements UserRepository {
+  final UserDatasource datasource;
+
+  UserDataRepository(this.datasource);
 
   @override
-  FutureResultat authentificateUser(String email, String password) async {
-    try {
-      return await datasource.authentificateUser(email, password);
-    } on ServerException catch (e) {
-      return Echec(reason: e.reason);
-    }
+  Future<User> login(String email, String password) async {
+    final model = await datasource.login(email, password);
+    return model.toEntity();
   }
 
   @override
-  FutureResultat registerUser(String email, String password) async {
-    try {
-      return await datasource.registerUser(email, password);
-    } on ServerException catch (e) {
-      return Echec(reason: e.reason);
-    }
+  Future<User> register(String email, String password) async {
+    final model = await datasource.register(email, password);
+    return model.toEntity();
+  }
+
+  @override
+  Future<void> logout() async {
+    await datasource.logout();
   }
 }
