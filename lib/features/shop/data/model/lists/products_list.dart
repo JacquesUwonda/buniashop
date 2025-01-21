@@ -1,6 +1,6 @@
 import 'package:buniashop/features/shop/data/model/product_model.dart';
 
-final List<Product> ProductList = [
+final List<Product> productList = [
   Product(
     id: '1',
     name: 'Chaussures de sport',

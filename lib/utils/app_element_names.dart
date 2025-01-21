@@ -19,3 +19,5 @@ const logoutText = "Logout";
 const confirmLogoutTitle = "Confirm Logout";
 const confirmLogoutText = "Are you sure you want to Logout?";
 const searchProductText = "Search something";
+const categoryText = "Categories";
+const mostRecentText = "Most Recent";

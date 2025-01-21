@@ -1,5 +1,9 @@
 import 'package:buniashop/features/shop/data/model/lists/averissement_product.dart';
+import 'package:buniashop/features/shop/data/model/lists/categorie_list.dart';
+import 'package:buniashop/features/shop/data/model/lists/recent_product.dart';
 import 'package:buniashop/features/shop/presentation/widgets/app_drower.dart';
+import 'package:buniashop/features/shop/presentation/widgets/build_categorie.dart';
+import 'package:buniashop/features/shop/presentation/widgets/build_recent_product.dart';
 import 'package:buniashop/features/shop/presentation/widgets/carousel_builder.dart';
 import 'package:buniashop/features/shop/presentation/widgets/searchbar.dart';
 import 'package:buniashop/utils/app_colors.dart';
@@ -50,6 +54,8 @@ class HomePage extends StatelessWidget {
             CarouselBuilder(
               products: advertisementProducts,
             ),
+            BuildCategorie(categorie: categoryList),
+            BuildRecentProduct(products: recentProductList),
           ],
         ),
       ),
