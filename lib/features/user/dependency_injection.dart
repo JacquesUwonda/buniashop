@@ -25,24 +25,11 @@ void initUserDependencies(GetIt sl) {
   sl.registerLazySingleton(() => LogoutUser(sl()));
 
   // Blocs
-  sl.registerFactory(() => AuthentificateUserBloc(loginUser: sl()));
+  sl.registerFactory(() => AuthentificateUserBloc(
+        loginUser: sl(),
+        localStorage: sl(),
+      ));
   sl.registerFactory(() => RegisterUserBloc(registerUser: sl()));
-  sl.registerFactory(() => LogoutUserBloc(logoutUser: sl()));
+  sl.registerFactory(
+      () => LogoutUserBloc(logoutUser: sl(), localStorage: sl()));
 }
-
-// void init(GetIt sl) {
-//   sl.registerFactory<AuthentificateUserBloc>(
-//       () => AuthentificateUserBloc(authentificateUser: sl(), loginUser: null));
-//   sl.registerFactory<RegisterUserBloc>(
-//       () => RegisterUserBloc(registerUser: sl()));
-
-//   sl.registerFactory<AuthentificateUser>(
-//       () => AuthentificateUser(repository: sl()));
-//   sl.registerFactory<RegisterUser>(() => RegisterUser(repository: sl()));
-
-//   sl.registerFactory<UserRepository>(
-//       () => UserDataRepository(datasource: sl()));
-
-//   sl.registerFactory<UserDatasource>(
-//       () => SupabaseUserDatasource(supabaseClient: sl()));
-// }

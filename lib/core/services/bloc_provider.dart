@@ -1,8 +1,5 @@
 import 'package:buniashop/dependency_injection.dart';
-import 'package:buniashop/features/user/dependency_injection.dart';
-import 'package:buniashop/features/user/domain/usecases/authentificate_user.dart';
-import 'package:buniashop/features/user/domain/usecases/logout_user.dart';
-import 'package:buniashop/features/user/domain/usecases/register_user.dart';
+import 'package:buniashop/features/shop/presentation/logic/cubit/dot_indicator_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // ignore: depend_on_referenced_packages
@@ -27,5 +24,8 @@ List<SingleChildWidget> blocProviders({required BuildContext context}) {
     BlocProvider<ShowpasswordCubit>(
       create: (BuildContext context) => ShowpasswordCubit(),
     ),
+    BlocProvider<DotIndicatorCubit>(
+      create: (BuildContext context) => DotIndicatorCubit(),
+    )
   ];
 }

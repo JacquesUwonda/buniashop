@@ -34,7 +34,7 @@ class LoginPage extends StatelessWidget {
       body: BlocListener<AuthentificateUserBloc, UserState>(
         listener: (context, state) {
           if (state is UserSuccess) {
-            Navigator.pushNamed(context, RouteNames.homePage);
+            Navigator.pushReplacementNamed(context, RouteNames.homePage);
           } else if (state is UserEchecState) {
             showSnackBar(context, state.reason, errorColor, dismiss);
           }

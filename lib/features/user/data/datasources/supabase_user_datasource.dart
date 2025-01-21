@@ -18,6 +18,7 @@ class SupabaseUserDatasource implements UserDatasource {
       return UserModel(
         id: response.user!.id,
         email: response.user!.email!,
+        token: '',
       );
     } else {
       throw Exception('Login failed');
@@ -35,6 +36,7 @@ class SupabaseUserDatasource implements UserDatasource {
       return UserModel(
         id: response.user!.id,
         email: response.user!.email!,
+        token: '',
       );
     } else {
       throw Exception('Registration failed');

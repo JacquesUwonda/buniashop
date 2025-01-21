@@ -1,8 +1,14 @@
-const electronicGroupImage = "assets/images/electronique.png";
-const vetementGroupImage = "assets/images/electronique.png";
-const accessoirsGroupImage = "assets/images/electronique.png";
-const decorationGroupImage = "assets/images/electronique.png";
-const beauteGroupImage = "assets/images/electronique.png";
-const alimentationGroupImage = "assets/images/electronique.png";
-const enfantGroupImage = "assets/images/electronique.png";
-const santeGroupImage = "assets/images/electronique.png";
+//publicites images
+const decoration = "assets/images/publicites/decoration.jpg";
+const vedette = "assets/images/publicites/vedette.jpg";
+const blouse = "assets/images/publicites/vetements.jpg";
+
+//product images
+const dress = "assets/images/produits/dress.jpg";
+const jeux = "assets/images/produits/jeux.jpg";
+const laptop = "assets/images/produits/laptop.jpg";
+
+//categories images
+const vetementsGroupImage = "assets/images/publicites/vetements.jpg";
+const electronicsGroupImage = "assets/images/produits/laptop.jpg";
+const accessoirsGroupImage = "assets/images/categories/souris.jpg";
